@@ -1,5 +1,5 @@
 ---
-name: setup
+name: openclaw:setup
 description: Interactive setup wizard for OpenClaw — walks through installation, configuration, and credentials step by step.
 argument-hint: "[--skip-install] [--skip-config] [--skip-credentials]"
 allowed-tools:
