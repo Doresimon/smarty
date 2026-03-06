@@ -1,5 +1,5 @@
 ---
-name: OpenClaw Install
+name: openclaw-install
 description: >
   Guides the user through installing OpenClaw, the self-hosted personal AI assistant.
   Activate when the user says: "install OpenClaw", "set up OpenClaw", "how do I get OpenClaw running",

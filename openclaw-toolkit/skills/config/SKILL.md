@@ -1,5 +1,5 @@
 ---
-name: OpenClaw Config
+name: openclaw-config
 description: >
   Explains how to configure OpenClaw, including the gateway, openclaw.json settings,
   security hardening, channel configuration, and workspace options.

@@ -1,5 +1,5 @@
 ---
-name: OpenClaw Credentials
+name: openclaw-credentials
 description: >
   Guides the user through setting up API keys, model authentication, and messaging channel
   credentials for OpenClaw. Covers OAuth, API key rotation, model failover, and per-channel auth.

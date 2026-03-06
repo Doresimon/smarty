@@ -1,5 +1,5 @@
 ---
-name: OpenClaw Manage
+name: openclaw-manage
 description: >
   Covers starting, stopping, restarting, and monitoring the OpenClaw gateway and daemon.
   Also covers updating, diagnosing, and checking service health.
