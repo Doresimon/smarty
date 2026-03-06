@@ -11,11 +11,13 @@ claude plugin marketplace add Doresimon/smarty
 # Install a plugin
 claude plugin install openclaw-toolkit@smarty
 claude plugin install claude-toolkit@smarty
+claude plugin install dev-toolkit@smarty
 
 # Update
 claude plugin marketplace update smarty
 claude plugin update openclaw-toolkit@smarty
 claude plugin update claude-toolkit@smarty
+claude plugin update dev-toolkit@smarty
 ```
 
 ---
@@ -53,3 +55,17 @@ claude plugin install claude-toolkit@smarty
 
 **Commands:**
 - `/claude-toolkit:setup` — Marketplace setup wizard: adds the `Doresimon/smarty` marketplace if missing, lets you browse or search for plugins, select from a list, and installs them — all without leaving Claude.
+
+---
+
+### dev-toolkit
+
+General-purpose software engineering agents for Claude Code.
+
+**Install:**
+```bash
+claude plugin install dev-toolkit@smarty
+```
+
+**Agents (auto-trigger):**
+- `software-engineer` — Autonomous end-to-end engineering: debugging, feature implementation, refactoring, and code review across any language or stack. Triggers when tasks require multi-file changes, root cause analysis, or design decisions.

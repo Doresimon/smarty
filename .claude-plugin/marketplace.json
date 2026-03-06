@@ -12,7 +12,27 @@
       "name": "openclaw-toolkit",
       "source": "./plugins/openclaw-toolkit",
       "description": "Skills for installing, configuring, and managing OpenClaw — the self-hosted personal AI assistant.",
-      "version": "0.1.1",
+      "version": "0.1.4",
+      "author": {
+        "name": "Aji",
+        "email": "doresimon1993@gmail.com"
+      }
+    },
+    {
+      "name": "claude-toolkit",
+      "source": "./plugins/claude-toolkit",
+      "description": "Browse the Claude Code marketplace and install plugins interactively.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Aji",
+        "email": "doresimon1993@gmail.com"
+      }
+    },
+    {
+      "name": "dev-toolkit",
+      "source": "./plugins/dev-toolkit",
+      "description": "General-purpose software engineering agents for Claude Code.",
+      "version": "0.1.0",
       "author": {
         "name": "Aji",
         "email": "doresimon1993@gmail.com"

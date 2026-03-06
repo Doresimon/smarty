@@ -1,0 +1,10 @@
+{
+  "name": "dev-toolkit",
+  "version": "0.1.0",
+  "description": "General-purpose software engineering agents for Claude Code.",
+  "author": {
+    "name": "Aji",
+    "email": "doresimon1993@gmail.com"
+  },
+  "keywords": ["engineering", "coding", "development", "software"]
+}
