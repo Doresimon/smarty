@@ -26,6 +26,26 @@ openclaw onboard
 
 OpenClaw recommends using the latest-generation model available for best performance and security.
 
+### Reuse Claude Code API Key
+
+If the user already has Claude Code installed, their Anthropic API key is stored in `~/.claude.json` under the `primaryApiKey` field. Offer to read and reuse it automatically:
+
+1. Read `~/.claude.json` via `Bash` and extract `primaryApiKey`:
+   ```bash
+   node -e "const f=require('fs');const d=JSON.parse(f.readFileSync(require('os').homedir()+'/.claude.json','utf8'));console.log(d.primaryApiKey||'')"
+   ```
+2. If a key is found, ask (Yes/No): "Found your Claude Code API key (`sk-ant-...xxxx`). Use this for OpenClaw?"
+   - Yes → set it for OpenClaw automatically:
+     ```bash
+     openclaw onboard --anthropic-key <key>
+     ```
+     Or export it for the current session and run onboard:
+     ```bash
+     export ANTHROPIC_API_KEY=<key> && openclaw onboard
+     ```
+   - No → fall back to manual API key entry below.
+3. If no key is found in `~/.claude.json`, skip this option and proceed to manual entry.
+
 ### API Key Auth
 
 Set the provider API key in config or environment:
@@ -153,7 +173,7 @@ openclaw doctor
 ## Rotating Credentials
 
 To rotate an API key or channel token:
-1. Update the key in your provider's dashboard
+1. Update the key in your provider's dashboard (or re-read from `~/.claude.json` `primaryApiKey` if using Claude Code)
 2. Edit the value in `~/.openclaw/` config or re-run `openclaw onboard`
 3. Restart the gateway: `openclaw gateway --restart`
 4. Verify: `openclaw doctor`
