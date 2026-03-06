@@ -12,7 +12,7 @@
       "name": "openclaw-toolkit",
       "source": "./plugins/openclaw-toolkit",
       "description": "Skills for installing, configuring, and managing OpenClaw — the self-hosted personal AI assistant.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": {
         "name": "Aji",
         "email": "doresimon1993@gmail.com"
