@@ -9,6 +9,8 @@ allowed-tools:
 
 Guide the user through a complete OpenClaw setup in three sequential phases: install, config, and credentials. Be conversational, check in after each phase, and skip phases the user indicates are already done.
 
+**Command execution rule:** Never ask the user to run commands themselves. Use the `Bash` tool to run all commands directly. Only ask for confirmation before running commands that modify the system (installs, config changes). Show the user the output and explain what it means.
+
 When asking questions, always use `AskUserQuestion` with structured options:
 - Yes/No questions: provide options `["Yes", "No"]`
 - Single-choice questions: provide a selection list; always include a final option like `"Other / enter manually"` that accepts free text input
@@ -38,7 +40,7 @@ Unless `--skip-install` was passed:
 2. Ask (selection list): "What platform are you on?"
    Options: `["macOS / Linux / WSL2", "Windows (PowerShell)", "Other / enter manually"]`
 
-3. Provide the appropriate install command based on their selection:
+3. Ask (Yes/No): "Ready to run the install command?" then run it via `Bash`:
 
    **macOS / Linux / WSL2:**
    ```bash
@@ -46,20 +48,16 @@ Unless `--skip-install` was passed:
    ```
 
    **Windows (PowerShell):**
-   ```powershell
-   iwr -useb https://openclaw.ai/install.ps1 | iex
-   ```
-
-   Alternative if the script fails:
    ```bash
-   npm install -g openclaw@latest
-   openclaw onboard --install-daemon
+   powershell -Command "iwr -useb https://openclaw.ai/install.ps1 | iex"
    ```
 
-4. Ask (Yes/No): "Did the install command succeed?"
-   - No → show the alternative `npm install -g openclaw@latest` approach and ask again.
+   Show the output. If it fails, ask (Yes/No): "Want to try the npm fallback instead?" and run:
+   ```bash
+   npm install -g openclaw@latest && openclaw onboard --install-daemon
+   ```
 
-5. After install, verify:
+4. After install, run verification automatically via `Bash`:
    ```bash
    openclaw doctor
    openclaw status
@@ -95,10 +93,11 @@ Unless `--skip-config` was passed:
    Ask: "Enter the numbers of the channels you want (e.g. 1,3), or type channel names if choosing Other."
    Note which ones they selected — credentials for these will be covered in Phase 3.
 
-4. If any config changes were made, remind the user to run:
+4. If any config changes were made, run automatically via `Bash`:
    ```bash
    openclaw doctor
    ```
+   Show the output and flag any issues.
 
 ---
 
@@ -113,33 +112,31 @@ Unless `--skip-credentials` was passed:
      - Anthropic: `export ANTHROPIC_API_KEY=sk-ant-...`
      - OpenAI: `export OPENAI_API_KEY=sk-...`
      - Other: ask the user to provide the env var name and value.
-   - Recommend running `openclaw onboard` to store the key persistently.
-   - Ask (Yes/No): "Have you added the API key?"
+   - Ask (Yes/No): "Ready to run `openclaw onboard` to store the key persistently?" then run it via `Bash`:
+     ```bash
+     openclaw onboard
+     ```
+   - Guide the user through the interactive prompts.
 
-2. For each messaging channel the user selected in Phase 2, walk through credentials one at a time. After presenting each set of instructions, ask (Yes/No): "Done — ready to move on?"
+2. For each messaging channel the user selected in Phase 2, walk through credentials one at a time. Where credentials require external steps (browser, phone), explain what the user needs to do, then ask (Yes/No): "Done — ready to continue?" before running the next command.
 
-   **WhatsApp:** QR code pairing — run `openclaw onboard`, select WhatsApp, scan QR with phone.
+   **WhatsApp:** Ask (Yes/No): "Ready to pair WhatsApp?" then run `openclaw onboard`, guide the user to select WhatsApp and scan the QR code with their phone.
 
    **Telegram:**
-   - Message `@BotFather` on Telegram → `/newbot` → copy the token.
-   - Add via `openclaw onboard` or config: `channels.telegram.token`.
+   - Instruct the user to message `@BotFather` on Telegram → `/newbot` → copy the token.
+   - Ask (Yes/No): "Got the token? Ready to add it?" then run `openclaw onboard` via `Bash`.
 
    **Slack:**
-   - Create app at https://api.slack.com/apps
-   - Enable Socket Mode → get App-Level Token (`xapp-...`)
-   - Add scopes: `chat:write`, `im:history`, `im:read`, `app_mentions:read`
-   - Install to workspace → get Bot Token (`xoxb-...`)
-   - Add both tokens via `openclaw onboard`.
+   - Instruct the user to create an app at https://api.slack.com/apps, enable Socket Mode, add scopes (`chat:write`, `im:history`, `im:read`, `app_mentions:read`), install to workspace, and copy both tokens (`xapp-...` and `xoxb-...`).
+   - Ask (Yes/No): "Got both tokens? Ready to add them?" then run `openclaw onboard` via `Bash`.
 
    **Discord:**
-   - Create bot at https://discord.com/developers/applications
-   - Enable `Message Content Intent` and `Server Members Intent`
-   - Copy bot token, invite bot to server
-   - Add token via `openclaw onboard`.
+   - Instruct the user to create a bot at https://discord.com/developers/applications, enable `Message Content Intent` and `Server Members Intent`, copy the bot token, and invite the bot to their server.
+   - Ask (Yes/No): "Got the token? Ready to add it?" then run `openclaw onboard` via `Bash`.
 
-   For other channels: direct the user to run `openclaw onboard` and select the channel.
+   For other channels: ask (Yes/No): "Ready?" then run `openclaw onboard` via `Bash` and guide the user through channel selection.
 
-3. After all credentials are set, run a final check:
+3. After all credentials are set, run a final check automatically via `Bash`:
    ```bash
    openclaw doctor
    openclaw status
@@ -154,3 +151,4 @@ Once all phases are done:
 - Remind the user they can reconfigure at any time with `openclaw onboard`.
 - Ask (selection list): "What would you like to do next?"
   Options: `["Send a test message on a connected channel", "View openclaw status", "I'm done — nothing else", "Other / enter manually"]`
+  - "View openclaw status" → run `openclaw status` via `Bash` and show output.
