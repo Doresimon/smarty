@@ -1,0 +1,22 @@
+{
+  "name": "smarty",
+  "owner": {
+    "name": "Aji",
+    "email": "doresimon1993@gmail.com"
+  },
+  "metadata": {
+    "description": "Aji's Claude Code plugin collection"
+  },
+  "plugins": [
+    {
+      "name": "openclaw-toolkit",
+      "source": "./openclaw-toolkit",
+      "description": "Skills for installing, configuring, and managing OpenClaw — the self-hosted personal AI assistant.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Aji",
+        "email": "doresimon1993@gmail.com"
+      }
+    }
+  ]
+}
