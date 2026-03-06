@@ -10,7 +10,7 @@
   "plugins": [
     {
       "name": "openclaw-toolkit",
-      "source": "./openclaw-toolkit",
+      "source": "./plugins/openclaw-toolkit",
       "description": "Skills for installing, configuring, and managing OpenClaw — the self-hosted personal AI assistant.",
       "version": "0.1.0",
       "author": {
