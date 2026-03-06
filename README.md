@@ -14,6 +14,8 @@ claude plugin install openclaw-toolkit@smarty
 
 # Update all marketplaces
 claude plugin marketplace update
+claude plugin marketplace update smarty
+claude plugin update openclaw-toolkit@smarty
 ```
 
 ### Claude Console
