@@ -1,6 +1,6 @@
 {
   "name": "openclaw-toolkit",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Skills for installing, configuring, and managing OpenClaw — the self-hosted personal AI assistant.",
   "author": {
     "name": "Aji",
