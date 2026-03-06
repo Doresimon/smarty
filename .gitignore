@@ -1,0 +1,3 @@
+# Claude local files
+.claude/*.local.md
+.claude/settings.local.json
