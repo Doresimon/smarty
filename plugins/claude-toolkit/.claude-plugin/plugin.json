@@ -1,0 +1,10 @@
+{
+  "name": "claude-toolkit",
+  "version": "0.1.0",
+  "description": "Toolkit for browsing the Claude Code marketplace and installing plugins.",
+  "author": {
+    "name": "Aji",
+    "email": "doresimon1993@gmail.com"
+  },
+  "keywords": ["plugins", "marketplace", "install", "setup"]
+}
